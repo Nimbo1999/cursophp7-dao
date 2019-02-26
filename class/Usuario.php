@@ -50,10 +50,7 @@ class Usuario{
 
 			$row = $result[0];
 
-			$this->setIdUsuario($row['idusuario']);
-			$this->setDesloguin($row['desloguin']);
-			$this->setDesSenha($row['dessenha']);
-			$this->setDtCadastro(new DateTime($row['dtcadastro']));
+			$this->setData($result[0]);
 
 		}
 
@@ -85,13 +82,32 @@ class Usuario{
 
 			$row = $result[0];
 
-			$this->setIdUsuario($row['idusuario']);
-			$this->setDesloguin($row['desloguin']);
-			$this->setDesSenha($row['dessenha']);
-			$this->setDtCadastro(new DateTime($row['dtcadastro']));
+			$this->setData($result[0]);
 
 		}else {
 			throw new Exception("Loguin ou senha inválidos(Podendo ser ambos.)");
+		}
+	}
+
+	public function setData($data){
+
+		$this->setIdUsuario($data['idusuario']);
+		$this->setDesloguin($data['desloguin']);
+		$this->setDesSenha($data['dessenha']);
+		$this->setDtCadastro(new DateTime($data['dtcadastro']));
+
+	}
+
+	public function insert(){
+		$sql = new Sql();
+
+		$result = $sql->select("CALL sp_usuarios_insert(:LOGUIN, :PASSWORD)", array(
+			':LOGUIN'=>$this->getDesloguin(),
+			':PASSWORD'=>$this->getDesSenha()
+		));
+
+		if(count($result) > 0){
+			$this->setData($result[0]);
 		}
 	}
 

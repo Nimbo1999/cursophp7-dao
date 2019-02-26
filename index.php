@@ -1,5 +1,4 @@
 <?php
-
 require_once("config.php");
 // Carrega 1 usuário
 //$root = new Usuario();
@@ -15,7 +14,14 @@ require_once("config.php");
 //echo json_encode($search);
 
 // Carrega um usuário informando o loguin e a senha
-$usuario = new Usuario();
-$usuario->loguin("gabriel", "8546621");
-echo $usuario;
+//$usuario = new Usuario();
+//$usuario->loguin("gabriel", "8546621");
+//echo $usuario;
+
+$aluno = new Usuario();
+$aluno->setDesloguin("aluno");
+$aluno->setDessenha("#alun0");
+$aluno->insert();
+
+echo $aluno;
 ?>
