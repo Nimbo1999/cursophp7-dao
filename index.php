@@ -18,10 +18,18 @@ require_once("config.php");
 //$usuario->loguin("gabriel", "8546621");
 //echo $usuario;
 
-$aluno = new Usuario();
-$aluno->setDesloguin("aluno");
-$aluno->setDessenha("#alun0");
-$aluno->insert();
+//Criando um novo usuário
+//$aluno = new Usuario();
+//$aluno->setDesloguin("aluno");
+//$aluno->setDessenha("#alun0");
+//$aluno->insert();
+//echo $aluno;
 
-echo $aluno;
+$usuario = new Usuario();
+$usuario->loadById(14);
+$usuario->update("Nimbo", "5486523");
+
+echo $usuario;
+
+
 ?>
